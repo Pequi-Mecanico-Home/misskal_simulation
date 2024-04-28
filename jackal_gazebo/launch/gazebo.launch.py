@@ -77,6 +77,7 @@ def generate_launch_description():
 
     # Spawn robot
     spawn_robot = Node(
+        namespace='misskal',
         package='gazebo_ros',
         executable='spawn_entity.py',
         name='spawn_jackal',
