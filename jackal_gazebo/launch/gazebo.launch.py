@@ -22,9 +22,12 @@ def generate_launch_description():
                                                 EnvironmentVariable('GAZEBO_MODEL_PATH',
                                                                     default_value=''),
                                                 '/usr/share/gazebo-11/models/:',
-                                                str(Path(get_package_share_directory('jackal_description')).
-                                                    parent.resolve())])
-
+                                                str(Path(get_package_share_directory('jackal_description')).parent.resolve()),
+                                                ':',
+                                                str(Path(get_package_share_directory('interbotix_common_sim')).parent.resolve()),
+                                                ':',
+                                                str(Path(get_package_share_directory('interbotix_xsarm_descriptions')).parent.resolve()),
+                        ])
 
     # Launch args
     world_path = LaunchConfiguration('world_path')
@@ -46,6 +49,14 @@ def generate_launch_description():
             ' ',
             'gazebo_controllers:=',
             config_jackal_velocity_controller,
+            ' ',
+            'robot_name:=misskal',
+            ' ',
+            'base_link_frame:=vx300s_base',
+            ' ',
+            'use_world_frame:=false',
+            ' ',
+            'hardware_type:=gz_classic'
         ]
 
     launch_jackal_description = IncludeLaunchDescription(
